@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
-class DeliveryCard {
+class DeliveryCardTest {
     @Test
     void shouldFillCorrectRegiste() {
         open("http://localhost:9999");

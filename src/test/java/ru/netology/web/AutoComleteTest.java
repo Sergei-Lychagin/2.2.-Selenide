@@ -26,7 +26,7 @@ public class AutoComleteTest {
         int yearNow = date.getYear();
         int monthNow = date.getMonthValue();
 
-        LocalDate dateSearch = LocalDate.of(2025, 1, 15);
+        LocalDate dateSearch = LocalDate.of(2021, 6, 13);
         int yearSearch = dateSearch.getYear() - yearNow;
         int monthSearch = dateSearch.getMonthValue();
         int daySearch = dateSearch.getDayOfMonth();
@@ -44,6 +44,6 @@ public class AutoComleteTest {
             }
         }
         $$(".calendar__day").get(daySearch).click();
-        $("[data-test-id='date'] .input__control").find(String.valueOf(exactText("15.01.2025")));
+        $("[data-test-id='date'] .input__control").find(String.valueOf(exactText("13.06.2021")));
     }
 }

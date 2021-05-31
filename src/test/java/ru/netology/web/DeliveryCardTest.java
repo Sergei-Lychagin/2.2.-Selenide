@@ -1,6 +1,7 @@
 package ru.netology.web;
 
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -13,33 +14,44 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 class DeliveryCardTest {
+
+    public static String getDate() {
+        LocalDate date = LocalDate.now().plusDays(4);
+        return date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+    public String date = getDate();
+    @BeforeEach
+    void setUpAll() {
+        open("http://localhost:9999");
+    }
+
     @Test
     void shouldFillCorrectRegiste() {
-        open("http://localhost:9999");
+
         $("[data-test-id=city] input").setValue("Воронеж");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        LocalDate date = LocalDate.now();
-        date = date.plusDays(4);
-        $("[data-test-id='date'] .input__control").setValue(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        $("[data-test-id='date'] .input__control").setValue(date);
         $("[data-test-id=name] input").setValue("Дмитрий Петров-Водкин");
         $("[data-test-id=phone] input").setValue("+79865432098");
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
         $("[data-test-id='notification']").shouldBe(visible, Duration.ofMillis(11000));
+        $(".notification__content").shouldBe(text("Встреча успешно забронирована на "+"04.06.2021"), visible);
+
 
     }
 
     @Test
     void shouldSendEmptyForm() {
-        open("http://localhost:9999");
+
         $(byText("Забронировать")).click();
         $(byText("Поле обязательно для заполнения")).shouldBe(visible);
     }
 
     @Test
     void shouldWrongCity() {
-        open("http://localhost:9999");
+
         $("[data-test-id='city'] .input__control").setValue("Париж");
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         LocalDate date = LocalDate.now();
@@ -54,7 +66,7 @@ class DeliveryCardTest {
 
     @Test
     void shouldNoDate() {
-        open("http://localhost:9999");
+
         $("[data-test-id='city'] .input__control").setValue("Абакан");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -67,7 +79,7 @@ class DeliveryCardTest {
 
     @Test
     void shouldWrongName() {
-        open("http://localhost:9999");
+
         $("[data-test-id='city'] .input__control").setValue("Барнаул");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -83,7 +95,7 @@ class DeliveryCardTest {
 
     @Test
     void shouldwrongPhone() {
-        open("http://localhost:9999");
+
         $("[data-test-id='city'] .input__control").setValue("Липецк");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -99,7 +111,7 @@ class DeliveryCardTest {
 
     @Test
     void shouldNotmarkCheckbox() {
-        open("http://localhost:9999");
+
         $("[data-test-id='city'] .input__control").setValue("Краснодар");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -114,7 +126,7 @@ class DeliveryCardTest {
 
     @Test
     void shouldClosePopup() {
-        open("http://localhost:9999");
+
         $("[data-test-id='city'] .input__control").setValue("Севастополь");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));

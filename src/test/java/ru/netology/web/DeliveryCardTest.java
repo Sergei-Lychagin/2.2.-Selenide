@@ -37,7 +37,7 @@ class DeliveryCardTest {
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
         $("[data-test-id='notification']").shouldBe(visible, Duration.ofMillis(11000));
-        $(".notification__content").shouldBe(text("Встреча успешно забронирована на "+"04.06.2021"), visible);
+        $(".notification__content").shouldBe(text("Встреча успешно забронирована на "+"09.06.2021"), visible);
 
 
     }
@@ -54,9 +54,7 @@ class DeliveryCardTest {
 
         $("[data-test-id='city'] .input__control").setValue("Париж");
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        LocalDate date = LocalDate.now();
-        date = date.plusDays(3);
-        $("[data-test-id='date'] .input__control").setValue(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        $("[data-test-id='date'] .input__control").setValue(date);
         $("[data-test-id='name'] .input__control").setValue("Петров Николай");
         $("[data-test-id='phone'] .input__control").setValue("+79998887766");
         $("[data-test-id='agreement']").click();
@@ -83,9 +81,7 @@ class DeliveryCardTest {
         $("[data-test-id='city'] .input__control").setValue("Барнаул");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        LocalDate date = LocalDate.now();
-        date = date.plusDays(3);
-        $("[data-test-id='date'] .input__control").setValue(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        $("[data-test-id='date'] .input__control").setValue(date);
         $("[data-test-id='name'] .input__control").setValue("456211");
         $("[data-test-id='phone'] .input__control").setValue("+79998887766");
         $("[data-test-id='agreement']").click();
@@ -99,9 +95,7 @@ class DeliveryCardTest {
         $("[data-test-id='city'] .input__control").setValue("Липецк");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        LocalDate date = LocalDate.now();
-        date = date.plusDays(3);
-        $("[data-test-id='date'] .input__control").setValue(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        $("[data-test-id='date'] .input__control").setValue(date);
         $("[data-test-id='name'] .input__control").setValue("Петров Николай");
         $("[data-test-id='phone'] .input__control").setValue("89998887766");
         $("[data-test-id='agreement']").click();
@@ -115,9 +109,7 @@ class DeliveryCardTest {
         $("[data-test-id='city'] .input__control").setValue("Краснодар");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        LocalDate date = LocalDate.now();
-        date = date.plusDays(3);
-        $("[data-test-id='date'] .input__control").setValue(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        $("[data-test-id='date'] .input__control").setValue(date);
         $("[data-test-id='name'] .input__control").setValue("Петров Николай");
         $("[data-test-id='phone'] .input__control").setValue("+79998887766");
         $(byText("Забронировать")).click();
@@ -130,9 +122,7 @@ class DeliveryCardTest {
         $("[data-test-id='city'] .input__control").setValue("Севастополь");
         $(".menu-item_type_block").click();
         $("[data-test-id='date'] .input__control").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        LocalDate date = LocalDate.now();
-        date = date.plusDays(3);
-        $("[data-test-id='date'] .input__control").setValue(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        $("[data-test-id='date'] .input__control").setValue(date);
         $("[data-test-id='name'] .input__control").setValue("Петров Николай");
         $("[data-test-id='phone'] .input__control").setValue("+79998887766");
         $("[data-test-id='agreement']").click();

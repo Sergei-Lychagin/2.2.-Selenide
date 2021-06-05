@@ -5,10 +5,9 @@ import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -26,7 +25,7 @@ public class AutoComleteTest {
         int yearNow = date.getYear();
         int monthNow = date.getMonthValue();
 
-        LocalDate dateSearch = LocalDate.of(2021, 6, 13);
+        LocalDate dateSearch = LocalDate.of(2021, 6, 20);
         int yearSearch = dateSearch.getYear() - yearNow;
         int monthSearch = dateSearch.getMonthValue();
         int daySearch = dateSearch.getDayOfMonth();
@@ -44,6 +43,16 @@ public class AutoComleteTest {
             }
         }
         $$(".calendar__day").get(daySearch).click();
-        $("[data-test-id='date'] .input__control").find(String.valueOf(exactText("13.06.2021")));
+        $("[data-test-id='date'] .input__control").find(byText("20.06.2021"));
+        $("[data-test-id=name] input").setValue("Дмитрий Петров-Водкин");
+        $("[data-test-id=phone] input").setValue("+79865432098");
+        $("[data-test-id=agreement]").click();
+        $$("button").find(exactText("Забронировать")).click();
+        $("[data-test-id='notification']").shouldBe(visible, Duration.ofMillis(11000));
+        $(".notification__title").shouldBe(visible, Duration.ofMillis(11000));
+        $(".notification__content").shouldBe(text("Встреча успешно забронирована на " + "20.06.2021"), visible);
+
+
     }
+
 }

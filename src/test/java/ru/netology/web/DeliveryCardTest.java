@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.*;
 class DeliveryCardTest {
 
     public static String getDate() {
-        LocalDate date = LocalDate.now().plusDays(4);
+        LocalDate date = LocalDate.now().plusDays(3);
         return date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
     public String date = getDate();

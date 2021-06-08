@@ -16,10 +16,12 @@ import static com.codeborne.selenide.Selenide.*;
 class DeliveryCardTest {
 
     public static String getDate() {
-        LocalDate date = LocalDate.now().plusDays(3);
+        LocalDate date = LocalDate.now().plusDays(5);
         return date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
+
     public String date = getDate();
+
     @BeforeEach
     void setUpAll() {
         open("http://localhost:9999");
@@ -37,7 +39,7 @@ class DeliveryCardTest {
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
         $("[data-test-id='notification']").shouldBe(visible, Duration.ofMillis(11000));
-        $(".notification__content").shouldBe(text("Встреча успешно забронирована на "+"09.06.2021"), visible);
+        $(".notification__content").shouldBe(text("Встреча успешно забронирована на " + date), visible);
 
 
     }

@@ -59,7 +59,8 @@ public class AutoComleteTest {
                 $("[data-step='-1']").click();
             }
         }
-        $$(".calendar__day").get(daySearch).click();
+        //$$(".calendar__day").get(daySearch).click();
+        $$(".calendar__day").find(exactText(String.valueOf(daySearch))).click();
         $("[data-test-id=name] input").setValue("Дмитрий Петров-Водкин");
         $("[data-test-id=phone] input").setValue("+79865432098");
         $("[data-test-id=agreement]").click();
@@ -69,7 +70,7 @@ public class AutoComleteTest {
         $(".notification__title").shouldBe(visible);
         assertEquals("Встреча успешно забронирована на " + dateMeeting, firstDate);
         $(".notification__content").shouldBe(text("Встреча успешно забронирована на " + dateMeeting), visible);
-     //TODO : Оставил два способа проверки, просто попробовать будет работать или нет.
+        //TODO : Оставил два способа проверки, просто попробовать будет работать или нет.
 
     }
 
